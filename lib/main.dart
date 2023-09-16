@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iug_task/PostScreen.dart';
 
 import 'FirstTask.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FirstTask(),
+      home: PostScreen(),
     );
   }
 }
