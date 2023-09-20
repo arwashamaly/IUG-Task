@@ -12,6 +12,9 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
   bool flag2 = false;
   int selectedOption = 1;
   int quantity = 1; // الكمية الافتراضية
+  double price = 21.00;
+  double sizePrice = 0;
+  int selectedSizeIndex = 100;
 
   void decreaseQuantity() {
     if (quantity > 1) {
@@ -27,6 +30,13 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
         quantity++;
       });
     }
+  }
+
+  int additionals() {
+    if (flag2)
+      return 9;
+    else
+      return 0;
   }
 
   @override
@@ -77,31 +87,25 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
                       height: 35,
                       child: Row(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 9),
-                            child: IconButton(
-                                onPressed: increaseQuantity,
-                                icon: Icon(
-                                  Icons.add,
-                                  color: Colors.lightBlueAccent[100],
-                                  size: 15,
-                                )),
-                          ),
+                          IconButton(
+                              onPressed: increaseQuantity,
+                              icon: Icon(
+                                Icons.add,
+                                color: Colors.lightBlueAccent[100],
+                                size: 15,
+                              )),
                           Text(quantity.toString(),
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15)),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8, left: 8),
-                            child: IconButton(
-                                onPressed: decreaseQuantity,
-                                icon: Icon(
-                                  Icons.minimize,
-                                  color: Colors.lightBlueAccent[100],
-                                  size: 15,
-                                )),
-                          )
+                          IconButton(
+                              onPressed: decreaseQuantity,
+                              icon: Icon(
+                                Icons.remove,
+                                color: Colors.lightBlueAccent[100],
+                                size: 15,
+                              ))
                         ],
                       ),
                     ),
@@ -160,6 +164,14 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
                       onTap: () {
                         setState(() {
                           selectedOption = 1;
+                          selectedSizeIndex = selectedOption;
+                          if (selectedOption == 1) {
+                            sizePrice = 0;
+                          } else if (selectedOption == 2) {
+                            sizePrice = 9;
+                          } else {
+                            sizePrice = 9;
+                          }
                         });
                       },
                       child: customRadio(1)),
@@ -189,6 +201,13 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
                       onTap: () {
                         setState(() {
                           selectedOption = 2;
+                          if (selectedOption == 1) {
+                            sizePrice = 0;
+                          } else if (selectedOption == 2) {
+                            sizePrice = 9;
+                          } else {
+                            sizePrice = 9;
+                          }
                         });
                       },
                       child: customRadio(2)),
@@ -225,6 +244,13 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
                       onTap: () {
                         setState(() {
                           selectedOption = 3;
+                          if (selectedOption == 1) {
+                            sizePrice = 0;
+                          } else if (selectedOption == 2) {
+                            sizePrice = 9;
+                          } else {
+                            sizePrice = 9;
+                          }
                         });
                       },
                       child: customRadio(3)),
@@ -362,7 +388,7 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "21.00  د.ا",
+                                '${price + sizePrice + additionals()}  د.أ',
                                 style: TextStyle(color: Colors.white),
                               ),
                               Text(

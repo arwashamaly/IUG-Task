@@ -22,16 +22,14 @@ class FirstTask extends StatelessWidget {
             Container(
               margin: EdgeInsets.all(20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Nusa Penida",
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500),
-                    ),
+                  Text(
+                    "Nusa Penida",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
                   ),
                   SizedBox(
                     height: 18,
@@ -43,15 +41,12 @@ class FirstTask extends StatelessWidget {
                   SizedBox(
                     height: 18,
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Picture",
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500),
-                    ),
+                  Text(
+                    "Picture",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
                   ),
                   SizedBox(
                     height: 18,

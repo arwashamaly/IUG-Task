@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:iug_task/Post.dart';
 
-class PostWidget extends StatelessWidget {
+class PostWidget extends StatefulWidget {
   PostModel postModel;
 
   PostWidget(this.postModel);
 
+  @override
+  State<StatefulWidget> createState() => _PostWidgetState();
+}
+class _PostWidgetState extends State<PostWidget>{
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,20 +29,20 @@ class PostWidget extends StatelessWidget {
                 children: [
                   ClipOval(
                       child: Image.network(
-                    postModel.user!.imageUrl ?? '',
-                    fit: BoxFit.cover,
-                    width: 50,
-                    height: 50,
-                  )),
+                        widget.postModel.user!.imageUrl ?? '',
+                        fit: BoxFit.cover,
+                        width: 50,
+                        height: 50,
+                      )),
                   SizedBox(
                     width: 10,
                   ),
-                  Text(postModel.user!.name ?? "")
+                  Text(widget.postModel.user!.name ?? "")
                 ],
               ),
             ),
             Image.network(
-              postModel.image ?? '',
+              widget.postModel.image ?? '',
               height: 180,
               width: double.infinity,
               fit: BoxFit.cover,
@@ -59,15 +63,22 @@ class PostWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(
-                    Icons.favorite,
-                    color:
-                        (postModel.isLiked ?? false) ? Colors.red : Colors.grey,
+                  InkWell(
+                    child: Icon(
+                      Icons.favorite,
+                      color:
+                      (widget.postModel.isLiked ?? false) ? Colors.red : Colors.grey,
+                    ),
+                    onTap: () {
+                      setState(() {
+                        widget.postModel.isLiked = !(widget.postModel.isLiked??false);
+                      });
+                    },
                   ),
                   SizedBox(
                     height: 10,
                   ),
-                  Text(postModel.content ?? ''),
+                  Text(widget.postModel.content ?? ''),
                 ],
               ),
             )
@@ -75,5 +86,7 @@ class PostWidget extends StatelessWidget {
         ),
       ),
     );
+
   }
+
 }
