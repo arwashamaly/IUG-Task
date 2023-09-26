@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iug_task/Post.dart';
+import 'package:provider/provider.dart';
+
+import 'PostData.dart';
 
 class PostWidget extends StatefulWidget {
   PostModel postModel;
@@ -9,7 +12,8 @@ class PostWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _PostWidgetState();
 }
-class _PostWidgetState extends State<PostWidget>{
+
+class _PostWidgetState extends State<PostWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,11 +33,11 @@ class _PostWidgetState extends State<PostWidget>{
                 children: [
                   ClipOval(
                       child: Image.network(
-                        widget.postModel.user!.imageUrl ?? '',
-                        fit: BoxFit.cover,
-                        width: 50,
-                        height: 50,
-                      )),
+                    widget.postModel.user!.imageUrl ?? '',
+                    fit: BoxFit.cover,
+                    width: 50,
+                    height: 50,
+                  )),
                   SizedBox(
                     width: 10,
                   ),
@@ -67,12 +71,11 @@ class _PostWidgetState extends State<PostWidget>{
                     child: Icon(
                       Icons.favorite,
                       color:
-                      (widget.postModel.isLiked ?? false) ? Colors.red : Colors.grey,
+                          widget.postModel.isLiked ? Colors.red : Colors.grey,
                     ),
                     onTap: () {
-                      setState(() {
-                        widget.postModel.isLiked = !(widget.postModel.isLiked??false);
-                      });
+                      Provider.of<PostData>(context, listen: false)
+                          .togglePost(widget.postModel);
                     },
                   ),
                   SizedBox(
@@ -86,7 +89,5 @@ class _PostWidgetState extends State<PostWidget>{
         ),
       ),
     );
-
   }
-
 }
